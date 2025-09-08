@@ -3,6 +3,7 @@ package com.lirui.Mapper;
 import com.lirui.Pojo.Emp;
 import com.lirui.Pojo.EmpQueryParam;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 
@@ -33,7 +34,9 @@ public interface EmpMapper {
 
     void update(Emp emp);
 
+    @MapKey("ops")
     List<Map<String,Object>> getJobOptions();
 
+    @MapKey("name")
     List<Map<String, Object>> getGenderData();
 }
