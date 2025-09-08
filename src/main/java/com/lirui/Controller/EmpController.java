@@ -28,6 +28,12 @@ public class EmpController {
         return Result.success(pr);
     }
 
+    @GetMapping("/{id}")
+    public Result getById(@PathVariable Integer id) {
+        Emp emp = empService.getById(id);
+        return Result.success(emp);
+    }
+
     @PostMapping
     public Result save(@RequestBody Emp emp) {
         log.info("新增员工：{}",emp);
@@ -39,6 +45,13 @@ public class EmpController {
     public Result delete(@RequestParam List<Integer> ids) {
         log.info("删除员工：{}",ids);
         empService.deleteByIds(ids);
+        return Result.success();
+    }
+
+    @PutMapping
+    public Result update(@RequestBody Emp emp) {
+        log.info("更新员工：{}",emp);
+        empService.update(emp);
         return Result.success();
     }
 }
