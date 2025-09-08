@@ -77,4 +77,18 @@
         </set>
         where id = #{id}
     </update>
+    <select id="getJobOptions" resultType="java.util.Map">
+        select (case when job = 1 then '学工部'
+        when job = 2 then '教研部'
+        when job = 3 then '咨询部'
+        when job = 4 then '就业部'
+        when job = 5 then '人事部'
+        else '其他'
+        end) ops,
+        count(*) num from emp group by job order by num
+    </select>
+    <select id="getGenderData" resultType="java.util.Map">
+        select if (gender = 1,'男性员工','女性员工') name,
+        count(*) value from emp group by gender
+    </select>
 </mapper>
