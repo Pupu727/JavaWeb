@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class EmpServiceImpl implements EmpService {
@@ -52,5 +53,11 @@ public class EmpServiceImpl implements EmpService {
             EmpLog emplog = new EmpLog(null, LocalDateTime.now(), "新增员工"+emp);
             empLogMapper.insert(emplog);
         }
+    }
+
+    @Override
+    public void deleteByIds(List<Integer> ids) {
+        empMapper.deleteByIds(ids);
+        empExprMapper.deleteByEmpIds(ids);
     }
 }
