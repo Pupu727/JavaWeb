@@ -3,6 +3,7 @@ package com.lirui.Service;
 
 import com.lirui.Pojo.Emp;
 import com.lirui.Pojo.EmpQueryParam;
+import com.lirui.Pojo.LoginInfo;
 import com.lirui.Pojo.PageResult;
 
 import java.util.List;
@@ -20,4 +21,6 @@ public interface EmpService {
     void update(Emp emp);
 
     List<Emp> listMaster();
+
+    LoginInfo login(Emp emp);
 }

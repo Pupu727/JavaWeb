@@ -2,6 +2,7 @@ package com.lirui.Mapper;
 
 import com.lirui.Pojo.Emp;
 import com.lirui.Pojo.EmpQueryParam;
+import com.lirui.Pojo.LoginInfo;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -39,4 +40,7 @@ public interface EmpMapper {
 
     @Select("select e.id,e.name from emp e where e.job = 1")
     List<Emp> listMaster();
+
+    @Select("select e.id,e.name from emp e where e.username = #{username} and e.password = #{password}")
+    LoginInfo findUser(Emp emp);
 }

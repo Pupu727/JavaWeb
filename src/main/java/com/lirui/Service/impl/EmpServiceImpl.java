@@ -7,6 +7,7 @@ import com.lirui.Mapper.EmpLogMapper;
 import com.lirui.Mapper.EmpMapper;
 import com.lirui.Pojo.*;
 import com.lirui.Service.EmpService;
+import com.lirui.ultis.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +15,9 @@ import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class EmpServiceImpl implements EmpService {
@@ -84,5 +87,17 @@ public class EmpServiceImpl implements EmpService {
     @Override
     public List<Emp> listMaster() {
         return empMapper.listMaster();
+    }
+
+    @Override
+    public LoginInfo login(Emp emp) {
+        LoginInfo l = empMapper.findUser(emp);
+        Map<String,Object> map = new HashMap<>();
+        map.put("id",l.getId());
+        map.put("username",l.getUsername());
+        if(l != null){
+            return new LoginInfo(l.getId(),l.getUsername(),l.getName(), JwtUtils.createToken(map));
+        }
+        return null;
     }
 }
