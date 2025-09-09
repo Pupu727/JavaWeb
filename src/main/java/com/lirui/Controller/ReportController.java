@@ -1,5 +1,6 @@
 package com.lirui.Controller;
 
+import com.lirui.Pojo.ClazzStuCount;
 import com.lirui.Pojo.JobOption;
 import com.lirui.Pojo.Result;
 import com.lirui.Service.ReportService;
@@ -29,5 +30,17 @@ public class ReportController {
         log.info("统计员工性别信息");
         List<Map<String,Object>> list = reportService.getGenderData();
         return Result.success(list);
+    }
+    @GetMapping("/studentDegreeData")
+    public Result  getStudentDegreeData(){
+        log.info("统计学生学历信息");
+        List<Map<String,Object>> list = reportService.getStudentDegreeData();
+        return Result.success(list);
+    }
+    @GetMapping("/studentCountData")
+    public Result  getStudentCountData(){
+        log.info("统计学生人数信息");
+        ClazzStuCount clazzStuCount = reportService.getStudentCountData();
+        return Result.success(clazzStuCount);
     }
 }

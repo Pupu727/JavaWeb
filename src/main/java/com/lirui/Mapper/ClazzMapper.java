@@ -23,4 +23,7 @@ public interface ClazzMapper {
     void update(Clazz clazz);
 
     int findStuByClazzId(Integer id);
+
+    @Select("select c.id,c.name from clazz c")
+    List<Clazz> listAll();
 }

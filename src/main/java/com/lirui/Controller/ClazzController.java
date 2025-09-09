@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j
 @RequestMapping("/clazzs")
 @RestController
@@ -48,5 +50,10 @@ public class ClazzController {
     public Result update(@RequestBody Clazz clazz){
         clazzService.update(clazz);
         return Result.success();
+    }
+    @GetMapping("/list")
+    public Result list(){
+        List<Clazz> list = clazzService.list();
+        return Result.success(list);
     }
 }

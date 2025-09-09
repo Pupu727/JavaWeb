@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -55,5 +56,10 @@ public class ClazzServiceImpl implements ClazzService {
     public void update(Clazz clazz) {
         clazz.setUpdateTime(LocalDateTime.now());
         clazzMapper.update(clazz);
+    }
+
+    @Override
+    public List<Clazz> list() {
+        return clazzMapper.listAll();
     }
 }

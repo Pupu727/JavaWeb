@@ -4,6 +4,8 @@ import com.lirui.Pojo.Clazz;
 import com.lirui.Pojo.ClazzQueryParam;
 import com.lirui.Pojo.PageResult;
 
+import java.util.List;
+
 public interface ClazzService {
     PageResult<Clazz> findAll(ClazzQueryParam clazzQueryParam);
 
@@ -14,4 +16,6 @@ public interface ClazzService {
     Clazz findById(Integer id);
 
     void update(Clazz clazz);
+
+    List<Clazz> list();
 }
