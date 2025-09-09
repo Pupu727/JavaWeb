@@ -22,4 +22,9 @@ public class GlobalExceptionHandle {
         String ex = m.substring(i).split(" ")[2];
         return Result.error(ex +"已存在!");
     }
+    @ExceptionHandler
+    public Result handleClazzHasStudentsException(ClazzHasStudentsException e){
+        log.warn("班级有学生不能删除", e);
+        return Result.error(e.getMessage());
+    }
 }

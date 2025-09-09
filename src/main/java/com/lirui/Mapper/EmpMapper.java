@@ -2,10 +2,7 @@ package com.lirui.Mapper;
 
 import com.lirui.Pojo.Emp;
 import com.lirui.Pojo.EmpQueryParam;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.MapKey;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.Map;
@@ -39,4 +36,7 @@ public interface EmpMapper {
 
     @MapKey("name")
     List<Map<String, Object>> getGenderData();
+
+    @Select("select e.id,e.name from emp e where e.job = 1")
+    List<Emp> listMaster();
 }

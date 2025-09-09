@@ -1,0 +1,37 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lirui.Mapper.ClazzMapper">
+    <insert id="insert">
+        insert into clazz (name, room, begin_date, end_date, master_id,subject,create_time,update_time)
+        values (#{name}, #{room}, #{beginDate}, #{endDate}, #{masterId},#{subject},#{createTime},#{updateTime})
+    </insert>
+    <update id="update">
+        update clazz set name = #{name}, room = #{room}, begin_date = #{beginDate}, end_date = #{endDate}, master_id = #{masterId},subject = #{subject},update_time = #{updateTime} where id = #{id}
+    </update>
+    <delete id="delete">
+        delete from clazz c where id = #{id}
+    </delete>
+    <select id="list" resultType="com.lirui.Pojo.Clazz">
+        select c.id, c.name, c.room, c.begin_date, c.end_date, c.master_id, c.create_time, c.update_time,
+        CASE
+        when c.begin_date > NOW() then '未开班'
+        when NOW() > c.end_date then '已结课'
+        else '在读中'
+        END AS status,
+        e.name AS masterName from clazz c left join emp e on e.id = c.master_id
+        <where>
+            <if test="clazzQueryParam.name != null and clazzQueryParam.name != ''">
+                c.name like concat('%',#{clazzQueryParam.name},'%')
+            </if>
+            <if test="clazzQueryParam.begin != null and clazzQueryParam.end != null">
+                and c.end_date between #{clazzQueryParam.begin} and #{clazzQueryParam.end}
+            </if>
+        </where>
+        order by c.end_date
+    </select>
+    <select id="findStuByClazzId" resultType="java.lang.Integer">
+        select count(*) from student where clazz_id = #{id}
+    </select>
+
+</mapper>
