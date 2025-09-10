@@ -2,11 +2,11 @@
 <project version="4">
   <component name="DataSourcePerFileMappings">
     <file url="file://$PROJECT_DIR$/src/main/java/com/lirui/Mapper/ClazzMapper.java" value="b60ad31b-2a47-492b-8ce2-13bee164a7b7" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/lirui/Mapper/EmpLogMapper.java" value="b60ad31b-2a47-492b-8ce2-13bee164a7b7" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/lirui/Mapper/EmpMapper.java" value="b60ad31b-2a47-492b-8ce2-13bee164a7b7" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/lirui/Mapper/LogMapper.java" value="b60ad31b-2a47-492b-8ce2-13bee164a7b7" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/lirui/Mapper/OperateLogMapper.java" value="b60ad31b-2a47-492b-8ce2-13bee164a7b7" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/lirui/Mapper/StudentMapper.java" value="b60ad31b-2a47-492b-8ce2-13bee164a7b7" />
     <file url="file://$PROJECT_DIR$/src/main/resources/com/lirui/Mapper/ClazzMapper.xml" value="b60ad31b-2a47-492b-8ce2-13bee164a7b7" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/com/lirui/Mapper/EmpLogMapper.xml" value="b60ad31b-2a47-492b-8ce2-13bee164a7b7" />
     <file url="file://$PROJECT_DIR$/src/main/resources/com/lirui/Mapper/EmpMapper.xml" value="b60ad31b-2a47-492b-8ce2-13bee164a7b7" />
     <file url="file://$PROJECT_DIR$/src/main/resources/com/lirui/Mapper/StudentMapper.xml" value="b60ad31b-2a47-492b-8ce2-13bee164a7b7" />
   </component>

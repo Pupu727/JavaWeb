@@ -1,5 +1,6 @@
 package com.lirui.Controller;
 
+import com.lirui.Aop.anno.LogOperation;
 import com.lirui.Mapper.EmpExprMapper;
 import com.lirui.Pojo.Emp;
 import com.lirui.Pojo.EmpQueryParam;
@@ -34,6 +35,7 @@ public class EmpController {
         return Result.success(emp);
     }
 
+    @LogOperation
     @PostMapping
     public Result save(@RequestBody Emp emp) {
         log.info("新增员工：{}",emp);
@@ -41,6 +43,7 @@ public class EmpController {
         return Result.success();
     }
 
+    @LogOperation
     @DeleteMapping
     public Result delete(@RequestParam List<Integer> ids) {
         log.info("删除员工：{}",ids);
@@ -48,6 +51,7 @@ public class EmpController {
         return Result.success();
     }
 
+    @LogOperation
     @PutMapping
     public Result update(@RequestBody Emp emp) {
         log.info("更新员工：{}",emp);

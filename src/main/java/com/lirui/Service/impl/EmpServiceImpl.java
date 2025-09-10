@@ -3,9 +3,11 @@ package com.lirui.Service.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.lirui.Mapper.EmpExprMapper;
-import com.lirui.Mapper.EmpLogMapper;
 import com.lirui.Mapper.EmpMapper;
-import com.lirui.Pojo.*;
+import com.lirui.Pojo.Emp;
+import com.lirui.Pojo.EmpQueryParam;
+import com.lirui.Pojo.LoginInfo;
+import com.lirui.Pojo.PageResult;
 import com.lirui.Service.EmpService;
 import com.lirui.ultis.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +29,6 @@ public class EmpServiceImpl implements EmpService {
     @Autowired
     private EmpExprMapper empExprMapper;
 
-    @Autowired
-    private EmpLogMapper empLogMapper;
     @Override
     public PageResult<Emp> list(EmpQueryParam empQueryParam) {
         PageHelper.startPage(empQueryParam.getPage(), empQueryParam.getPageSize());
@@ -49,7 +49,6 @@ public class EmpServiceImpl implements EmpService {
                 empExprMapper.insertBatch(emp.getExprList());
             }
     }
-
     @Override
     public void deleteByIds(List<Integer> ids) {
         empMapper.deleteByIds(ids);
@@ -65,7 +64,6 @@ public class EmpServiceImpl implements EmpService {
     @Override
     public void update(Emp emp) {
         Long startTime = System.currentTimeMillis();
-        try {
             emp.setUpdateTime(LocalDateTime.now());
             //1.更新员工信息
             empMapper.update(emp);
@@ -76,12 +74,6 @@ public class EmpServiceImpl implements EmpService {
                 emp.getExprList().forEach(e -> e.setEmpId(emp.getId()));
                 empExprMapper.insertBatch(emp.getExprList());
             }
-        } finally {
-            Long endTime = System.currentTimeMillis();
-            EmpLog emplog = new EmpLog(null, emp.getId(), LocalDateTime.now(),emp.getClass().toString(),
-                    "update",emp.toString(),Result.success().toString(),endTime-startTime,emp.getName());
-            empLogMapper.insert(emplog);
-        }
     }
 
     @Override
