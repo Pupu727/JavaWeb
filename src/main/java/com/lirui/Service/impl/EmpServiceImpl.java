@@ -92,10 +92,10 @@ public class EmpServiceImpl implements EmpService {
     @Override
     public LoginInfo login(Emp emp) {
         LoginInfo l = empMapper.findUser(emp);
-        Map<String,Object> map = new HashMap<>();
-        map.put("id",l.getId());
-        map.put("username",l.getUsername());
         if(l != null){
+            Map<String,Object> map = new HashMap<>();
+            map.put("id",l.getId());
+            map.put("username",l.getUsername());
             return new LoginInfo(l.getId(),l.getUsername(),l.getName(), JwtUtils.createToken(map));
         }
         return null;
